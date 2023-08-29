@@ -16,6 +16,8 @@ class MusicServiceApp {
     thisMusicService.navLinks = document.querySelectorAll('.navbar a'); 
     thisMusicService.songView = document.getElementById('song-view');
     thisMusicService.appUrl = '../db/app.json';
+
+    thisMusicService.categoryList = [];
         
     thisMusicService.initPages();
     thisMusicService.initSongs();
@@ -38,6 +40,7 @@ class MusicServiceApp {
         const pageId = link.getAttribute('href').replace('#', '');
         thisMusicService.activatePage(pageId);
       });  
+      
     }
 
    
@@ -57,6 +60,7 @@ class MusicServiceApp {
 
 
   }
+
 
   activatePage(pageId) {
     const thisMusicService = this;
@@ -120,21 +124,33 @@ class MusicServiceApp {
       });
   }
 
+ 
+
   renderCategories() {
-    const thisMusicService = this;
-    const categoriesContainer = document.querySelector('.categories-container');
+  const thisMusicService = this;
+  const selectCategory = document.getElementById('select-category');
 
-    fetch(thisMusicService.appUrl)
-      .then(response => response.json())
-      .then(appData => {
-        const categoriesTemplateHTML = templates.categoriesTemplate({
-          categories: appData.categories
-        });
-        categoriesContainer.innerHTML = categoriesTemplateHTML;
+  fetch(thisMusicService.appUrl)
+    .then(response => response.json())
+    .then(appData => {
+     
+      selectCategory.innerHTML = '';
 
-        thisMusicService.initCategories();
-      });
-  }
+      
+      const allCategoriesOption = document.createElement('option');
+      allCategoriesOption.value = 'all';
+      allCategoriesOption.textContent = 'All Categories';
+      selectCategory.appendChild(allCategoriesOption);
+
+      
+      for (const category of appData.categories) {
+        const categoryOption = document.createElement('option');
+        categoryOption.value = category;
+        categoryOption.textContent = category;
+        selectCategory.appendChild(categoryOption);
+      }
+    });
+}
 
 
   initCategories(){
