@@ -85,8 +85,8 @@ class MusicServiceApp {
           const songHTML = templates.songTemplate(eachSong);
           thisMusicService.songView.innerHTML += songHTML;
         }
-        GreenAudioPlayer.init({
-          selector: '.player',
+        GreenAudioPlayer.init({ 
+          selector: '.player', 
           stopOthersOnPlay: true
         });
       });
@@ -96,27 +96,31 @@ class MusicServiceApp {
     const thisMusicService = this;
     thisMusicService.searchInput = document.getElementById('search-input');
     thisMusicService.categoryInput = document.getElementById('category-input');
+    thisMusicService.categorySelect = document.getElementById('select-category');
     thisMusicService.searchResults = document.getElementById('search-results');
   }
 
 
   searchSongs() {
     const thisMusicService = this;
-    const searchValue = thisMusicService.searchInput.value;
+    const searchValue = thisMusicService.searchInput.value.toLowerCase();
+    const selectCategory = thisMusicService.categorySelect.value;
     
     fetch(thisMusicService.appUrl)
       .then(response => response.json())
       .then(appData => {
-        thisMusicService.songView.innerHTML = '';
+        thisMusicService.searchResults.innerHTML = ''; // Clear previous search results
         
         for (let eachSong of appData.songs) {
-          if (eachSong.title.toLowerCase().includes(searchValue)) {
+          if (
+            eachSong.title.toLowerCase().includes(searchValue) &&
+            (selectCategory === 'all' || eachSong.categories.includes(selectCategory))
+          ) {
             const songHTML = templates.songTemplate(eachSong);
-            thisMusicService.searchResults.innerHTML = songHTML;
-            break; 
+            thisMusicService.searchResults.innerHTML += songHTML; // Append to search results
           }
         }
-
+        
         GreenAudioPlayer.init({
           selector: '.player',
           stopOthersOnPlay: true
@@ -127,30 +131,30 @@ class MusicServiceApp {
  
 
   renderCategories() {
-  const thisMusicService = this;
-  const selectCategory = document.getElementById('select-category');
+    const thisMusicService = this;
+    const selectCategory = document.getElementById('select-category');
 
-  fetch(thisMusicService.appUrl)
-    .then(response => response.json())
-    .then(appData => {
+    fetch(thisMusicService.appUrl)
+      .then(response => response.json())
+      .then(appData => {
      
-      selectCategory.innerHTML = '';
+        selectCategory.innerHTML = '';
 
       
-      const allCategoriesOption = document.createElement('option');
-      allCategoriesOption.value = 'all';
-      allCategoriesOption.textContent = 'All Categories';
-      selectCategory.appendChild(allCategoriesOption);
+        const allCategoriesOption = document.createElement('option');
+        allCategoriesOption.value = 'all';
+        allCategoriesOption.textContent = '';
+        selectCategory.appendChild(allCategoriesOption);
 
       
-      for (const category of appData.categories) {
-        const categoryOption = document.createElement('option');
-        categoryOption.value = category;
-        categoryOption.textContent = category;
-        selectCategory.appendChild(categoryOption);
-      }
-    });
-}
+        for (const category of appData.categories) {
+          const categoryOption = document.createElement('option');
+          categoryOption.value = category;
+          categoryOption.textContent = category;
+          selectCategory.appendChild(categoryOption);
+        }
+      });
+  }
 
 
   initCategories(){
@@ -171,24 +175,23 @@ class MusicServiceApp {
 
   }
 
-  filterCategories(selectedCategory){
+  filterCategories(selectedCategory) {
     const thisMusicService = this;
 
     const allSongs = thisMusicService.songView.querySelectorAll('.song-container');
 
-    for(let song of allSongs){
-
+    for (let song of allSongs) {
       const songCategories = song.getAttribute('data-categories').split(' ');
 
-      if(songCategories.includes(selectedCategory)){
+      if (selectedCategory === 'all' || songCategories.includes(selectedCategory)) {
         song.classList.remove('hidden');
-      } else{
+      } else {
         song.classList.add('hidden');
       }
-
     }
-
   }
+
+  
 
  
 
@@ -196,4 +199,3 @@ class MusicServiceApp {
 }
 
 new MusicServiceApp();
-
