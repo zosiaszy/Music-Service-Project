@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-.container {
-     max-width: 1140px;
-      
-}
 
 $color-main: #131313;
 $color-red: #CF383E;
@@ -138,7 +134,7 @@ img {
 .player{
     
     margin-top: 10px;
-    margin-left: 350px;
+    margin-left: 430px;
     width: 400px;
     
  
@@ -168,7 +164,8 @@ audio {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 20px;
+   
+    
     
 }
 .song-container h3 {
@@ -181,8 +178,11 @@ audio {
 
 #song-view{
     margin-top: 50px;
+   
     
 }
+
+
 
 
 /* Subscribe */
@@ -256,7 +256,7 @@ margin-top: -40px;
 }
 
 .image-artist img{
-/* Style for "Warstwa 15" */
+
 width: 365px;
 height: 470px;
 box-shadow: 0 0 118px 24px rgba(0, 0, 0, 0.39);
@@ -325,43 +325,125 @@ padding: 20px 0 40px 0;
     }
 }
 
+
 #search-form {
-    color: $color-white;
-    position: relative;
-    margin-left: 550px;
-}
-#search-results{
-margin-top: 10px;
-position: relative;
-margin-left: 100px;
-    justify-content: center;
-    width: 400px;
-}
-    
-    .category-link{
-        color: white;
-    }
-
- 
-
-
- 
-
-/* Przesunięcie kategorii na lewo, a rankingu na prawo */
-.song-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  
+  
+  .form-row {
     display: flex;
+    gap: 10px;
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  input[type="text"],
+  select {
+    flex-shrink: 0;
+    padding: 10px;
+    height: 60px;
+    width: 355px;
+    border-radius: 7px;
+    font-size: 16px;
+    border: 1px solid $color-grey;
+    
+  }
+  
+  
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 100px;
+  }
+  
+  button {
+    background-color: #CF383E;
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    position: relative;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 130px;
+    min-height: 60px;
+    letter-spacing: 3px;
+    margin-left: -50px;
+    
+    &:hover {
+      background-color: darken(#CF383E, 10%);
+    }
+  }
+}
+
+#search-wrapper h3{
+    font-size: 40px;
+  margin-left: 630px;
+  margin-top: 40px;
+  color: $color-grey;
+    font-size: 40px;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 700;
+        letter-spacing: 15px;
+
+}
+
+#search-form h4{
+    color: #BFBFBF;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 5px;
+    margin-top: 10px;
+}
+
+ #search-results {
+    margin-left: 100px;
+    display: flex;
+ }
+
+ #search-results h3{
+    margin-left: 400px;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 600;
+    color: $color-white;
+ }
+
+ #search-results .song-details {
+    margin-left: 350px;
+ }
+
+
+ 
+
+
+.song-details {
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
     color: $color-white;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 16px;
-    margin-top: 120px;
+    margin-top: 20px;
+    font-family: "Source Sans 3", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-left: -100px;
+    
 }
 
 
 #song-categories {
     flex: 1;
-    margin-left: -200px;
+    
     width: 300px;
 }
 
@@ -371,9 +453,196 @@ margin-left: 100px;
 }
 
 
-.song-details p {
-    margin: 0;
-    margin-left: 15px; 
+#song-ranking {
+    margin-left: -200px;
 }
 
 
+
+
+.hidden {
+    display: none;
+}
+
+
+
+@media (max-width: 992px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .song-container {
+        text-align: center;
+    }
+
+    
+    .player,
+    .audio-player {
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    
+    .audio-player {
+        display: flex;
+        justify-content: center;
+    }
+
+    .subscribe-container {
+        text-align: center;
+        margin-top: 20px; 
+    }
+
+    
+    .title, .layer {
+        text-align: center;
+    }
+
+    
+    .title {
+        font-size: 70px;
+        letter-spacing: 45px;
+        margin-left: -30px; 
+    }
+
+    
+    .subtitle {
+        font-size: 24px; 
+    }
+
+    
+    .layer img {
+        width: 100%;
+        margin-top: 470px; 
+    }
+
+    #search-wrapper {
+        margin-top: 20px; 
+    }
+
+    
+    #search-wrapper h3,
+    #search-form,
+    #search-results {
+        text-align: center;
+        
+    }
+
+    
+    #search-form,
+    #search-results {
+        margin-top: 20px;
+        
+         
+    }
+
+    #search-results {
+        margin-left: 10px;
+    }
+    
+    #search-results .song-details {
+        margin-left: -50px;
+    }
+
+    #search-results h3 {
+        margin-left: 10px;
+    }
+
+    #search-form .form-row {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        margin-left: 20px; 
+    }
+
+   
+    #search-form input[type="text"],
+    #search-form select {
+        width: 80%;
+        margin: 10px 0 0 50px;
+        padding: 20px; 
+    }
+
+    .subscribe-box {
+        margin-top: 170px;
+        height: auto; 
+    }
+
+    .subscribe-box h1 {
+        font-size: 50px;
+        line-height: 1.2;
+        margin-top: 70px;
+        margin-left: 410px; 
+    }
+
+    .subscribe {
+        width: 180px;
+        height: 60px;
+        font-size: 24px;
+        letter-spacing: 5px;
+        top: -50px;
+        right: 80px; 
+    }
+
+    .description h2 {
+        font-size: 50px;
+        letter-spacing: 15px;
+        margin-left: 20px;
+        line-height: 1.7; 
+    }
+
+   
+    
+    .footer {
+        margin-left: -200px;
+    }
+}
+
+#discover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  background-color: $color-main;
+  color: $color-white;
+}
+
+#discover .section-title {
+  font-size: 40px;
+  margin-left: 600px;
+  color: $color-grey;
+    font-size: 40px;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 700;
+        letter-spacing: 15px;
+
+}
+
+#discover .section-subtitle {
+  font-size: 20px;
+  margin-left: 680px;
+}
+
+.discover-playlist-wrapper {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.discover-song {
+  display: flex;
+  align-items: center;
+  background-color: $color-white;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.discover-song audio {
+  width: 100%;
+}
