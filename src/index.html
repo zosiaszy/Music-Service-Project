@@ -25,11 +25,6 @@
     </script>
     <script id="template-search" type="text/x-handlebars-template">
     </script>
-    <script id="template-discover" type="text/x-handlebars-template">
-        <div class="discover-wrapper">
-            <h3>Discover</h3>
-        </div>
-    </script>
     <section class="music__header">
         <h1 class="title">TASTE</h1>
         <h2 class="subtitle">ENGAGE<br>
@@ -70,33 +65,50 @@
             <audio controls>
                 <source src="./songs/{{filename}}" type="audio/mpeg">
             </audio>
-            <div class="song-details">
+            
+        </div>
+        
+        <div class="song-details">
             <p id="song-categories">Categories: {{categories}}</p>
             <p>#{{ranking}} in the ranking</p>
-        </div>
         </div>
     </div>
 </script>
 
         <section id="search">
-    <div id="search-wrapper">
-        <h3>Search</h3>
-        <form id="search-form">
-    <input type="text" id="search-input" placeholder="Song Title">
-    <select name="category" id="select-category">
-    <option value="all">All Categories</option>
-    <!-- Kategorie zostaną wygenerowane dynamicznie w skrypcie -->
-</select>
+  <div id="search-wrapper">
+    <h3>SEARCH</h3>
+    <form id="search-form">
+      <div class="form-row">
+        <h4>Name</h4>
+        <input type="text" id="search-input">
+        <h4>Categories</h4>
+        <select name="category" id="select-category">
+          <option value="all"></option>
+        </select>
+      </div>
+      <div class="button-container">
+        <button id="search-button" type="submit">search</button>
+      </div>
+    </form>
+    <div id="search-results"></div>
+  </div>
+</section>
 
-    <button id="search-button" type="submit">Search</button>
-</form>
-        <div id="search-results"></div>
+
+        <script id="template-discover" type="text/x-handlebars-template">
+</script>
+
+    <section id="discover">
+  <div class="titles">
+    <h2 class="section-title" id="upc">DISCOVER</h2>
+    <h3 class="section-subtitle">Give it a try!</h3>
+  </div>
+  <div class="discover-playlist-wrapper">
     </div>
 </section>
 
 
-        <section id="discover">
-        </section>
     </div>
     <div class="subscribe-box">
         <h1>SUBSCRIBE NOW</h1>
@@ -114,6 +126,5 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/app.js"></script>
 </body>
 </html>
