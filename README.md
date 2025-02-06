@@ -1,6 +1,6 @@
 # Music Service Project
 ## Project on Replit
-https://music-service.zosiaszyposzyns.repl.co/
+See this project: https://6392767d-8b3c-473a-882a-17e4f6dbe20d-00-1u9qv5l76ptzv.janeway.replit.dev
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
